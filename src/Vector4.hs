@@ -1,8 +1,8 @@
 module Vector4
 (
 	Vector4,
-	fromList,	
-	toList,
+	vector4FromList,	
+	vector4ToList,
 	dot
 ) where
 
