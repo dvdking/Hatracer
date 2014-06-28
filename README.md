@@ -1,0 +1,4 @@
+Hatracer
+========
+
+Raytracer in haskell
