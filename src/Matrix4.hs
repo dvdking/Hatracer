@@ -7,8 +7,16 @@ module Matrix4
     matrixFromList
 ) where
 import Vector4
+import Control.Applicative
 
 data Matrix4 = Matrix4 [Vector4] deriving (Show)
+
+identity :: Matrix4
+identity = Matrix4 ([
+        Vector4 1 0 0 0,
+        Vector4 0 1 0 0,
+        Vector4 0 0 1 0,
+        Vector4 0 0 0 1])
 
 matrixToList :: Matrix4 -> [[Float]]
 matrixToList (Matrix4 m) = map (vector4ToList) m
@@ -38,14 +46,15 @@ multiply (Matrix4 m1) (Matrix4 m2) = Matrix4 (
         vector4FromList $ map (dot r2)[c0, c1, c2, c3],
         vector4FromList $ map (dot r3)[c0, c1, c2, c3]    
     ])
-
     where
         m1' = Matrix4 m1
         m2' = Matrix4 m2 
+
         r0 = (row m1' 0)
         r1 = (row m1' 1)
         r2 = (row m1' 2)
         r3 = (row m1' 3)
+
         c0 = (column m2' 0)
         c1 = (column m2' 1)
         c2 = (column m2' 2)

@@ -1,6 +1,6 @@
 module Vector4
 (
-	Vector4,
+	Vector4(..),
 	vector4FromList,	
 	vector4ToList,
 	dot
