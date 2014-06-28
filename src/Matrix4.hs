@@ -33,29 +33,10 @@ row (Matrix4 m) index = vector4FromList $ map ( !! index) [v1, v2, v3, v4]
 multiply :: Matrix4 -> Matrix4 -> Matrix4
 multiply (Matrix4 m1) (Matrix4 m2) = Matrix4 (
     [ 
-        vector4FromList [
-                r0 `dot` c0,
-                r0 `dot` c1,
-                r0 `dot` c2,
-                r0 `dot` c3],
-
-        vector4FromList [
-                r1 `dot` c0,
-                r1 `dot` c1,
-                r1 `dot` c2,
-                r1 `dot` c3],
-
-        vector4FromList [
-                r2 `dot` c0,
-                r2 `dot` c1,
-                r2 `dot` c2,
-                r2 `dot` c3],
-
-        vector4FromList [
-                r3 `dot` c0,
-                r3 `dot` c1,
-                r3 `dot` c2,
-                r3 `dot` c3]
+        vector4FromList $ map (dot r0)[c0, c1, c2, c3],
+        vector4FromList $ map (dot r1)[c0, c1, c2, c3],
+        vector4FromList $ map (dot r2)[c0, c1, c2, c3],
+        vector4FromList $ map (dot r3)[c0, c1, c2, c3]    
     ])
 
     where
