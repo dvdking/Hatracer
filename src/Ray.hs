@@ -49,9 +49,10 @@ raycast'' :: Ray -> Figure -> Vector3 -> SceneElement -> Maybe IteserectionInfo
 raycast'' (Ray origin direction) (Sphere radius) pos se | discriminant < 0 = Nothing
                                                         | otherwise = let d = sqrt(discriminant) 
                                                                           t1 = (-b+discriminant)/2*a
-                                                                          t2 = (-b-discriminant)/2*a in if(t1 > 0) then  Just (createInteserectionInfo t1)
-                                                                                                    else if(t2 > 0) then Just (createInteserectionInfo t2)
-                                                                                                    else Nothing
+                                                                          t2 = (-b-discriminant)/2*a 
+                                                                      in if(t1 > 0) then  Just (createInteserectionInfo t1)
+                                                                      else if(t2 > 0) then Just (createInteserectionInfo t2)
+                                                                      else Nothing
     where
         ray = (Ray origin direction)
         f = normalize (pos `minus` origin) 
@@ -64,7 +65,8 @@ raycast'' (Ray origin direction) (Sphere radius) pos se | discriminant < 0 = Not
 
         createInteserectionInfo t = let x = getCollisionX ray t
                                         y = getCollisionY ray t
-                                        z = getCollisionZ ray t in IteserectionInfo{inteserectionPoint=(Vector3 x y z), sceneElement=se }
+                                        z = getCollisionZ ray t
+                                        in IteserectionInfo{inteserectionPoint=(Vector3 x y z), sceneElement=se }
 
 
 getCollision :: (Vector3 -> Float) -> Ray -> Float -> Float
